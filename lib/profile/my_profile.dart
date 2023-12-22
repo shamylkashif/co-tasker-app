@@ -1,12 +1,8 @@
 import 'dart:io';
-
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../common/color.dart';
-import '../my_orders/orders.dart';
-import '../welcome/home-screen.dart';
 import 'change_pass.dart';
 
 class MyProfile extends StatefulWidget {
@@ -17,7 +13,6 @@ class MyProfile extends StatefulWidget {
 }
 
 class _MyProfileState extends State<MyProfile> {
-  int selectedIndex = 0;
   String imageUrl = "";
   void pickUploadProfilePic() async {
     final image = await ImagePicker().pickImage(
@@ -39,6 +34,7 @@ class _MyProfileState extends State<MyProfile> {
      });
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,31 +136,6 @@ class _MyProfileState extends State<MyProfile> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: apbar,
-        items: [
-          BottomNavigationBarItem(icon:Icon(Icons.home_filled), label: 'Home'),
-          BottomNavigationBarItem(icon:Icon(Icons.shopping_bag), label: 'Orders'),
-          BottomNavigationBarItem(icon:Icon(Icons.person), label: 'Profile'),],
-        currentIndex: selectedIndex,
-        selectedItemColor: dark,
-        onTap: (index){
-          setState(() {
-            selectedIndex =index;
-          });
-          switch(index){
-            case 0:
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHome()));
-              break;
-            case 1:
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Orders()));
-              break;
-            case 2:
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>MyProfile()));
-              break;
-          }
-        },
       ),
 
 

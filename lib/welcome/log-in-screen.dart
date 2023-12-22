@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/common/color.dart';
 
+import 'bottom_nav_bar.dart';
 import 'home-screen.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -16,6 +17,9 @@ class _LogInScreenState extends State<LogInScreen> {
   FirebaseAuth auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  String errorMessage = '';
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -71,20 +75,34 @@ class _LogInScreenState extends State<LogInScreen> {
                            ),
                            SizedBox(height: 30,),
                            InkWell(
-                             onTap: (){Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen() ));
+                             onTap: () async {
+                               // Navigator.push(context, MaterialPageRoute(builder: (context) => MyBottomNavBar() ));
+                               try{
+                                 await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text,
+                                     password: _passwordController.text);
 
-                             /*FirebaseAuth.instance.createUserWithEmailAndPassword(email: _emailController.text,
-                                   password: _passwordController.text).then((value) async {
-                                     print('Login Success');
-                                     var userMap = {
-                                       "email" : _emailController.text,
-                                       "password" : _passwordController.text,
-                                     }; await FirebaseFirestore.instance.collection("admin").add(userMap);
+                                   print('Login Success');
+                                 Navigator.push(context, MaterialPageRoute(builder: (context) => MyBottomNavBar() ));
+                                   // var userMap = {
+                                   //   "email" : _emailController.text,
+                                   //   "password" : _passwordController.text,
+                                   // };
+                                   // await FirebaseFirestore.instance.collection("admin").add(userMap);
 
-                                 } ).onError((error, stackTrace) {
-                                   print('login');
-                                   Navigator.of(context).pop();
-                               }) ;*/
+
+                               }on FirebaseException  catch(e){
+                                 print("e.code ${e.code}");
+                                 setState(() {
+                                   errorMessage = e.code;
+                                 });
+                                 if(e.code == "email-already-in-use"){
+                                   print("e.code ${e.code}");
+
+                                 }
+                               }catch (error) {
+                                 print("error ${error}");
+                               }
+
                              },
                              child: Container(
                                height: 45,
@@ -97,8 +115,8 @@ class _LogInScreenState extends State<LogInScreen> {
                              ),
                            ),
                            SizedBox(height: 20,),
-                           Text('Forgot Password ?',
-                             style:TextStyle(color: dark,fontSize: 12,) ,)
+                           Text('Forgot Password ?', style:TextStyle(color: dark,fontSize: 12,) ,),
+                           Text(errorMessage, style:TextStyle(color: Colors.red,fontSize: 20,) ,)
                          ],
                           ),
                       ),

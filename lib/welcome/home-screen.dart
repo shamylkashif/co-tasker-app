@@ -14,26 +14,6 @@ import '../services/house_renovate.dart';
 import '../services/salon.dart';
 
 
-
-void main(){
-  runApp(MyHome());
-}
-class MyHome extends StatelessWidget {
-  const MyHome({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-     /* routes: {
-        '/home': (context)=> MyHome(),
-        '/orders': (context)=> Orders(),
-        '/profile': (context)=> MyProfile(),
-      },*/
-      home: HomeScreen(),
-
-    );
-  }
-}
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -44,6 +24,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int selectedIndex = 0;
   int dotPosition = 0;
+
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -282,32 +265,6 @@ class _HomeScreenState extends State<HomeScreen> {
                  ),
                  //Offered Services back Container ends here
                ],),
-          bottomNavigationBar: BottomNavigationBar(
-                backgroundColor: apbar,
-                items: [
-                  BottomNavigationBarItem(icon:Icon(Icons.home_filled), label: 'Home'),
-                  BottomNavigationBarItem(icon:Icon(Icons.shopping_bag), label: 'Orders'),
-                  BottomNavigationBarItem(icon:Icon(Icons.person), label: 'Profile'),],
-                currentIndex: selectedIndex,
-                selectedItemColor: dark,
-                onTap: (index){
-                  setState(() {
-                    selectedIndex =index;
-                  });
-                  switch(index){
-                    case 0:
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyHome()));
-                      break;
-                    case 1:
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>Orders()));
-                      break;
-                    case 2:
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>MyProfile()));
-                      break;
-                  }
-                },
-              ),
-
       ),
     );
 
@@ -317,74 +274,10 @@ Widget _buildImage(String imagePath) {
     return ClipRRect(
       child: Image.asset(
         imagePath,
-        fit: BoxFit.fitWidth,
+        fit: BoxFit.cover,
         height: double.infinity,
         width: double.infinity,
       ),
     );
-  }
-
-
-/*class ServiceContainer extends StatelessWidget {
-  final String title;
-  final String imagePath;
-  final Widget destinationScreen; // Specify the destination screen for this service
-
-  // Constructor
-  const ServiceContainer({required this.title, required this.imagePath, required this.destinationScreen});
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => destinationScreen,
-          ),
-        );
-      },
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 50),
-        padding: EdgeInsets.only(top: 5,bottom: 5,left: 8,right: 8),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.white.withOpacity(0.9),
-              spreadRadius: 2,
-              blurRadius: 1,
-              offset: Offset(0, 3),
-            ),
-          ],
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: Row(
-            children: [
-              Image.asset(imagePath, height: 45, width: 45, fit: BoxFit.cover),
-              SizedBox(width: 12),
-              Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,)),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-}*/
-/*Container(
-                   padding: EdgeInsets.all(16),
-                   color: Colors.transparent,
-                   child: Column(
-                     children: [
-                       ServiceContainer(title: 'Electrician', imagePath: 'assets/serviceicons/electric-bulb.png', destinationScreen: Electrician()),
-                       ServiceContainer(title: 'Carpenter',imagePath: 'assets/serviceicons/circular-saw.png', destinationScreen: Carpenter(),),
-                       ServiceContainer(title: 'House Clean', imagePath: 'assets/serviceicons/clean-house.png', destinationScreen: HouseClean(),),
-                       ServiceContainer(title: 'House Renovate', imagePath: 'assets/serviceicons/home-renovation.png', destinationScreen: HouseRenovate()),
-                       ServiceContainer(title: 'Salon', imagePath: 'assets/serviceicons/salon.png', destinationScreen: Salon()),
-                     ],
-                   ),
-                 ),*/
-
+}
 
