@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/common/color.dart';
+import '../common/color.dart';
 
 class HouseRenovate extends StatefulWidget {
   const HouseRenovate({super.key});

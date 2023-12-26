@@ -1,16 +1,13 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/profile/my_profile.dart';
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:untitled/services/plumber.dart';
-
 import '../common/color.dart';
 import '../my_orders/orders.dart';
 import '../services/carpenter.dart';
 import '../services/electrician.dart';
 import '../services/house_clean.dart';
 import '../services/house_renovate.dart';
-
+import '../services/plumber.dart';
 import '../services/salon.dart';
 
 

@@ -1,10 +1,8 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/common/color.dart';
-
+import '../common/color.dart';
 import 'bottom_nav_bar.dart';
-import 'home-screen.dart';
+import 'cicular-progress-bar.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -17,7 +15,8 @@ class _LogInScreenState extends State<LogInScreen> {
   FirebaseAuth auth = FirebaseAuth.instance;
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  String errorMessage = '';
+  String errorMessage = '', errorPassword = '', errorEmail = '';
+  bool loginBtn = false;
 
 
   @override
@@ -76,34 +75,50 @@ class _LogInScreenState extends State<LogInScreen> {
                            SizedBox(height: 30,),
                            InkWell(
                              onTap: () async {
-                               // Navigator.push(context, MaterialPageRoute(builder: (context) => MyBottomNavBar() ));
-                               try{
-                                 await FirebaseAuth.instance.signInWithEmailAndPassword(email: _emailController.text,
+
+
+                               circularProgressBar(context);
+                               await Future.delayed( Duration(seconds: 1));
+
+                               try {
+                                 await FirebaseAuth.instance
+                                     .signInWithEmailAndPassword(
+                                     email: _emailController.text,
                                      password: _passwordController.text);
 
-                                   print('Login Success');
-                                 Navigator.push(context, MaterialPageRoute(builder: (context) => MyBottomNavBar() ));
-                                   // var userMap = {
-                                   //   "email" : _emailController.text,
-                                   //   "password" : _passwordController.text,
-                                   // };
-                                   // await FirebaseFirestore.instance.collection("admin").add(userMap);
-
-
-                               }on FirebaseException  catch(e){
-                                 print("e.code ${e.code}");
-                                 setState(() {
-                                   errorMessage = e.code;
-                                 });
-                                 if(e.code == "email-already-in-use"){
-                                   print("e.code ${e.code}");
-
+                                 print('Login Success');
+                                 Navigator.push(context, MaterialPageRoute(
+                                     builder: (context) => MyBottomNavBar()));
+                               }on FirebaseException catch (e) {
+                                 print("Exception: $e");
+                                 if(e.code=='channel-error'){
+                                   setState(() {
+                                     errorMessage = "please check your internet";
+                                   });
+                                 }else if(e.code=='invalid-email'){
+                                   setState(() {
+                                     errorEmail = "Please enter valid email";
+                                   });
+                                 }else if(e.code=='email-already-in-use'){
+                                   setState(() {
+                                     errorEmail = "The email address is already in use by another account.";
+                                   });
+                                 }else if(e.code=='weak-password'){
+                                   setState(() {
+                                     errorPassword = "Password should be at least 6 characters";
+                                   });
+                                 }else if(e.code=='invalid-credential'){
+                                   setState(() {
+                                     errorMessage = "Your email and password invalid";
+                                   });
                                  }
-                               }catch (error) {
-                                 print("error ${error}");
+                               } catch (e) {
+                                 print("Exception thrown on Sign Up page");
+                                 print(e);
                                }
-
+                               Navigator.of(context).pop();
                              },
+
                              child: Container(
                                height: 45,
                                width: 120,
@@ -113,7 +128,12 @@ class _LogInScreenState extends State<LogInScreen> {
                                ),
                                child: Center(child: Text('Log In',style: TextStyle(color: Colors.white,fontSize: 16), )),
                              ),
+
                            ),
+
+
+
+
                            SizedBox(height: 20,),
                            Text('Forgot Password ?', style:TextStyle(color: dark,fontSize: 12,) ,),
                            Text(errorMessage, style:TextStyle(color: Colors.red,fontSize: 20,) ,)

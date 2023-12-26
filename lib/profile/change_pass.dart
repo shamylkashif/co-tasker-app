@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/common/color.dart';
+
+import '../common/color.dart';
 
 class ChangePass extends StatefulWidget {
   const ChangePass({super.key});

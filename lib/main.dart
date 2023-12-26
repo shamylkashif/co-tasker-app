@@ -1,7 +1,6 @@
+import 'package:cotasker/welcome/splash-screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/welcome/splash-screen.dart';
-
 import 'firebase_options.dart';
 
 
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Super-Tasker App',
+      title: 'Co-Tasker',
       home: const SplashScreen(),
     );
   }

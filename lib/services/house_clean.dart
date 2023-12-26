@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/common/color.dart';
+import '../common/color.dart';
 
 class HouseClean extends StatefulWidget {
   const HouseClean({super.key});
@@ -29,7 +29,7 @@ class _HouseCleanState extends State<HouseClean> {
                 const SizedBox(width: 30,),
                 const Padding(
                   padding: EdgeInsets.only(top: 15),
-                  child: Text('Electrician services', style: TextStyle(color: dark,fontSize: 25,fontWeight: FontWeight.bold),),
+                  child: Text('Cleaning services', style: TextStyle(color: dark,fontSize: 25,fontWeight: FontWeight.bold),),
                 )
               ],
             ),
@@ -51,7 +51,7 @@ class _HouseCleanState extends State<HouseClean> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: Image.asset(
-                            'assets/containers/Screenshot (52).png',
+                            'assets/containers/sofa.jpeg',
                             height: 100,
                             width: 100,
                             fit: BoxFit.cover,
@@ -66,7 +66,7 @@ class _HouseCleanState extends State<HouseClean> {
                               padding: EdgeInsets.only(top: 20,left: 7),
                               child: Container(
                                 width: 150,
-                                child: Text('32-42 Inch LED/LCD Mounting',
+                                child: Text('Sofa Cleaning',
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   style:TextStyle(color: dark,fontSize: 19,fontWeight: FontWeight.bold ) ,),
@@ -74,11 +74,11 @@ class _HouseCleanState extends State<HouseClean> {
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 7,top: 5),
-                              child: Text('Per LED/LCD',style:TextStyle(color: dark,fontSize: 14) ,),
+                              child: Text('Vary acc. to Size and Type of sofa',style:TextStyle(color: dark,fontSize: 14) ,),
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 7,top: 5),
-                              child: Text('Rs. 1500',style:TextStyle(color: dark,fontSize: 14,fontWeight: FontWeight.bold) ,),
+                              child: Text('Inspection Charges Rs 100',style:TextStyle(color: dark,fontSize: 14,fontWeight: FontWeight.bold) ,),
                             )
 
                           ]
@@ -102,7 +102,7 @@ class _HouseCleanState extends State<HouseClean> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: Image.asset(
-                            'assets/containers/Screenshot (52).png',
+                            'assets/containers/mattress.jpeg',
                             height: 100,
                             width: 100,
                             fit: BoxFit.cover,
@@ -117,7 +117,7 @@ class _HouseCleanState extends State<HouseClean> {
                               padding: EdgeInsets.only(top: 20,left: 7),
                               child: Container(
                                 width: 150,
-                                child: Text('43-65 Inch LED/LCD Mounting',
+                                child: Text('Mattress Cleaning',
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 2,
                                   style:TextStyle(color: dark,fontSize: 19,fontWeight: FontWeight.bold ) ,),
@@ -125,7 +125,7 @@ class _HouseCleanState extends State<HouseClean> {
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 7,top: 5),
-                              child: Text('Per LED/LCD',style:TextStyle(color: dark,fontSize: 14) ,),
+                              child: Text('Per Mattress',style:TextStyle(color: dark,fontSize: 14) ,),
                             ),
                             Padding(
                               padding: EdgeInsets.only(left: 7,top: 5),
@@ -153,7 +153,7 @@ class _HouseCleanState extends State<HouseClean> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: Image.asset(
-                            'assets/containers/Screenshot (53).png',
+                            'assets/containers/house.jpeg',
                             height: 100,
                             width: 100,
                             fit: BoxFit.cover,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/common/color.dart';
+import 'color.dart';
+
 
 class Background extends StatelessWidget {
   Background({

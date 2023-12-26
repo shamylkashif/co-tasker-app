@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/common/color.dart';
-import 'package:untitled/my_orders/orders.dart';
-import 'package:untitled/profile/my_profile.dart';
-import 'package:untitled/welcome/home-screen.dart';
+import '../common/color.dart';
+import '../my_orders/orders.dart';
+import '../profile/my_profile.dart';
+import 'home-screen.dart';
 
 class MyBottomNavBar extends StatefulWidget {
   const MyBottomNavBar({super.key});
