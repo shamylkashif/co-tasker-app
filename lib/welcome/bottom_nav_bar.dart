@@ -27,7 +27,7 @@ class _MyBottomNavBarState extends State<MyBottomNavBar> {
     return Scaffold(
       body: page[indexOfPage],
       bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: apbar,
+          backgroundColor: Color(0xFF6FD3ED),
         onTap: (int index){
           setState(() {
             indexOfPage = index;

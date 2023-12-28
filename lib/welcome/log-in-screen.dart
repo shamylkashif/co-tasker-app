@@ -1,3 +1,4 @@
+import 'package:cotasker/welcome/home-screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../common/color.dart';
@@ -75,6 +76,12 @@ class _LogInScreenState extends State<LogInScreen> {
                            SizedBox(height: 30,),
                            InkWell(
                              onTap: () async {
+                               loginBtn ? CircularProgressIndicator(
+                               color: Colors.red,
+                               )
+                               :
+
+
 
 
                                circularProgressBar(context);
@@ -85,10 +92,12 @@ class _LogInScreenState extends State<LogInScreen> {
                                      .signInWithEmailAndPassword(
                                      email: _emailController.text,
                                      password: _passwordController.text);
+                                 Navigator.of(context).pop();
 
-                                 print('Login Success');
                                  Navigator.push(context, MaterialPageRoute(
                                      builder: (context) => MyBottomNavBar()));
+                                 print('Login Success');
+
                                }on FirebaseException catch (e) {
                                  print("Exception: $e");
                                  if(e.code=='channel-error'){
@@ -116,8 +125,8 @@ class _LogInScreenState extends State<LogInScreen> {
                                  print("Exception thrown on Sign Up page");
                                  print(e);
                                }
-                               Navigator.of(context).pop();
                              },
+
 
                              child: Container(
                                height: 45,
@@ -128,8 +137,8 @@ class _LogInScreenState extends State<LogInScreen> {
                                ),
                                child: Center(child: Text('Log In',style: TextStyle(color: Colors.white,fontSize: 16), )),
                              ),
-
                            ),
+
 
 
 
